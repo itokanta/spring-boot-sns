@@ -1,9 +1,40 @@
-/* 
- * Spring Boot SNS - ユーザーページ専用スタイル
+/**
+ * Spring Boot SNS - ユーザー詳細ページ専用スタイルシート
  * user.html で使用
  */
 
-/* ===== ユーザー情報カード ===== */
+/* ===== ヘッダーテーマ ===== */
+.header.purple {
+    border-bottom-color: #6f42c1;
+}
+
+/* ===== 戻るリンク ===== */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #6f42c1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.back-link:hover {
+    background-color: #f3e5f5;
+    color: #5a2d91;
+    text-decoration: none;
+    transform: translateX(-3px);
+}
+
+.back-link:before {
+    content: "←";
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* ===== ユーザー情報エリア ===== */
 .user-info {
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     padding: 30px 20px;
@@ -11,14 +42,25 @@
     margin-bottom: 30px;
     text-align: center;
     border: 1px solid #dee2e6;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.user-info:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6f42c1, #9966cc);
 }
 
 /* ===== ユーザーアバター ===== */
 .user-avatar {
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, #6f42c1, #563d7c);
+    background: linear-gradient(135deg, #6f42c1, #9966cc);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
@@ -27,18 +69,38 @@
     font-size: 2.5em;
     font-weight: bold;
     margin-bottom: 20px;
-    box-shadow: 0 4px 20px rgba(111, 66, 193, 0.3);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(111, 66, 193, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .user-avatar:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.4);
 }
 
-/* ===== ユーザー名表示 ===== */
+.user-avatar:after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #6f42c1, #9966cc, #6f42c1);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.user-avatar:hover:after {
+    opacity: 1;
+}
+
+/* ===== ユーザー名 ===== */
 .user-name {
-    margin: 0 0 20px 0;
     color: #333;
+    margin: 0 0 20px 0;
     font-size: 1.8em;
     font-weight: 600;
 }
@@ -49,7 +111,6 @@
     justify-content: center;
     gap: 40px;
     margin-top: 20px;
-    flex-wrap: wrap;
 }
 
 .stat-item {
@@ -57,12 +118,14 @@
     padding: 15px 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    min-width: 80px;
 }
 
 .stat-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .stat-number {
@@ -70,12 +133,13 @@
     font-weight: bold;
     color: #6f42c1;
     display: block;
-    margin-bottom: 5px;
+    line-height: 1;
 }
 
 .stat-label {
-    color: #666;
+    color: #6c757d;
     font-size: 0.9em;
+    margin-top: 5px;
     font-weight: 500;
 }
 
@@ -89,36 +153,40 @@
     margin-bottom: 25px;
     padding-bottom: 10px;
     border-bottom: 2px solid #6f42c1;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 /* ===== 投稿カード ===== */
 .post-card {
     background-color: #fff;
-    border: 1px solid #e3e6ea;
+    border: 1px solid #e9ecef;
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 20px;
-    transition: all 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
-.post-card::before {
-    content: '';
+.post-card:before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(180deg, #6f42c1, #563d7c);
+    background: linear-gradient(180deg, #6f42c1, #9966cc);
+    transition: width 0.3s ease;
 }
 
 .post-card:hover {
-    box-shadow: 0 8px 25px rgba(111, 66, 193, 0.15);
-    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
     border-color: #6f42c1;
+}
+
+.post-card:hover:before {
+    width: 6px;
 }
 
 /* ===== 投稿内容 ===== */
@@ -126,49 +194,53 @@
     color: #333;
     line-height: 1.7;
     margin-bottom: 15px;
-    font-size: 1.05em;
-    white-space: pre-wrap;
+    font-size: 16px;
     word-wrap: break-word;
 }
 
 /* ===== 投稿日時 ===== */
 .post-date {
-    color: #666;
-    font-size: 0.9em;
+    color: #6c757d;
+    font-size: 13px;
     text-align: right;
     font-weight: 500;
     padding-top: 10px;
     border-top: 1px solid #f1f3f4;
 }
 
+.post-date:before {
+    content: "🕒 ";
+    margin-right: 5px;
+}
+
 /* ===== 投稿なしメッセージ ===== */
 .no-posts {
     text-align: center;
-    color: #666;
+    color: #6c757d;
     font-style: italic;
     padding: 60px 20px;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     border-radius: 15px;
     border: 2px dashed #dee2e6;
-    margin-top: 30px;
+    position: relative;
+}
+
+.no-posts:before {
+    content: "📝";
+    font-size: 3em;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
 }
 
 .no-posts p {
-    font-size: 1.2em;
     margin: 0;
+    font-size: 18px;
     line-height: 1.6;
 }
 
 /* ===== アニメーション ===== */
-.post-card {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.post-card:nth-child(2) { animation-delay: 0.1s; }
-.post-card:nth-child(3) { animation-delay: 0.2s; }
-.post-card:nth-child(4) { animation-delay: 0.3s; }
-
-@keyframes fadeInUp {
+@keyframes slideInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -179,10 +251,20 @@
     }
 }
 
+.post-card {
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.post-card:nth-child(1) { animation-delay: 0.1s; }
+.post-card:nth-child(2) { animation-delay: 0.2s; }
+.post-card:nth-child(3) { animation-delay: 0.3s; }
+.post-card:nth-child(4) { animation-delay: 0.4s; }
+.post-card:nth-child(5) { animation-delay: 0.5s; }
+
 /* ===== レスポンシブ対応 ===== */
 @media (max-width: 768px) {
     .user-info {
-        padding: 20px 15px;
+        padding: 25px 15px;
     }
     
     .user-avatar {
@@ -191,17 +273,14 @@
         font-size: 2em;
     }
     
-    .user-name {
-        font-size: 1.5em;
-    }
-    
     .user-stats {
         gap: 20px;
+        flex-wrap: wrap;
     }
     
     .stat-item {
-        padding: 10px 15px;
-        min-width: 100px;
+        padding: 12px 15px;
+        min-width: 70px;
     }
     
     .stat-number {
@@ -213,7 +292,64 @@
         margin-bottom: 15px;
     }
     
+    .posts-container h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-info {
+        padding: 20px 10px;
+    }
+    
+    .user-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    
+    .user-name {
+        font-size: 1.5em;
+    }
+    
+    .user-stats {
+        gap: 15px;
+        justify-content: space-around;
+    }
+    
+    .stat-item {
+        flex: 1;
+        max-width: 120px;
+    }
+    
+    .post-card {
+        padding: 15px;
+    }
+    
     .post-content {
-        font-size: 1em;
+        font-size: 15px;
+    }
+    
+    .back-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+/* ===== ダークモード対応（将来用） ===== */
+@media (prefers-color-scheme: dark) {
+    .user-info {
+        background: linear-gradient(135deg, #2d3748, #4a5568);
+        border-color: #4a5568;
+    }
+    
+    .post-card {
+        background-color: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .post-content {
+        color: #e2e8f0;
     }
 }

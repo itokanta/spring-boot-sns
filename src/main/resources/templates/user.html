@@ -13,7 +13,7 @@
         <!-- 戻るリンク -->
         <a href="/" class="back-link">← 投稿一覧に戻る</a>
         
-        <div class="header purple">
+        <div class="header">
             <h1>👤 ユーザー投稿</h1>
         </div>
         
@@ -23,7 +23,7 @@
         <!-- ユーザー情報表示 -->
         <div class="user-info" th:if="${username}">
             <div class="user-avatar" th:text="${username.substring(0, 1).toUpperCase()}">U</div>
-            <h2 class="user-name" th:text="${username} + 'さん'">ユーザー名さん</h2>
+            <h2 th:text="${username} + 'さん'">ユーザー名さん</h2>
             <div class="user-stats">
                 <div class="stat-item">
                     <div class="stat-number" th:text="${postCount}">0</div>
