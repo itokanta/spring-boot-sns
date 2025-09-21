@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot SNS - 投稿一覧</title>
+    <!-- 外部CSSファイル読み込み -->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="header primary">
+            <h1>🐦 Spring Boot SNS</h1>
+            <p>みんなの投稿を見てみよう</p>
+        </div>
+        
+        <!-- 統計情報表示 -->
+        <div class="stats">
+            <p>総投稿数: <strong th:text="${postCount}">0</strong> 件</p>
+        </div>
+        
+        <!-- 新規投稿ボタン -->
+        <a href="/new" class="new-post-btn">📝 新しい投稿を作成</a>
+        
+        <!-- フラッシュメッセージ表示 -->
+        <div th:if="${successMessage}" class="message success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+        
+        <!-- 投稿一覧テーブル -->
+        <!-- Qiita記事のth:eachを使用したテーブル表示を改良 -->
+        <div th:if="${postList != null and !postList.isEmpty()}">
+            <table class="posts-table">
+                <thead>
+                    <tr>
+                        <th>投稿者</th>
+                        <th>投稿内容</th>
+                        <th>投稿日時</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 
+                    Qiita記事の該当コード:
+                    <tr th:each="test : ${testList}">
+                        <td th:text="${test.id}"></td>
+                        <td th:text="${test.name}"></td>
+                        <td th:text="${test.old}"></td>
+                    </tr>
+                    
+                    私たちの改良版（SNS用）:
+                    -->
+                    <tr th:each="post : ${postList}">
+                        <td>
+                            <a th:href="@{/user(username=${post.username})}" 
+                               th:text="${post.username}" 
+                               class="username-link">ユーザー名</a>
+                        </td>
+                        <td class="content-cell" th:text="${post.content}">投稿内容</td>
+                        <td class="date-cell" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">日時</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 投稿がない場合のメッセージ -->
+        <div th:if="${postList == null or postList.isEmpty()}" class="no-posts">
+            <p>まだ投稿がありません。<br>
+            <a href="/new">最初の投稿</a>をしてみましょう！</p>
+        </div>
+    </div>
+</body>
+</html>

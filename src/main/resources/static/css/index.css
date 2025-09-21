@@ -1,0 +1,173 @@
+/* 
+ * Spring Boot SNS - 投稿一覧ページ専用スタイル
+ * index.html で使用
+ */
+
+/* ===== 統計情報表示 ===== */
+.stats {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.stats p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.stats strong {
+    color: #007bff;
+    font-size: 1.3em;
+}
+
+/* ===== 新規投稿ボタン ===== */
+.new-post-btn {
+    display: block;
+    width: 250px;
+    margin: 0 auto 30px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+}
+
+.new-post-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* ===== 投稿テーブル ===== */
+.posts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.posts-table th {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.posts-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.posts-table tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s;
+}
+
+.posts-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== ユーザー名リンク ===== */
+.username-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #e3f2fd;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.username-link:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* ===== 投稿内容セル ===== */
+.content-cell {
+    max-width: 300px;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+/* ===== 日時セル ===== */
+.date-cell {
+    color: #666;
+    font-size: 0.9em;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+/* ===== 投稿なしメッセージ ===== */
+.no-posts {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    border: 2px dashed #dee2e6;
+}
+
+.no-posts p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.no-posts a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.no-posts a:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media (max-width: 768px) {
+    .new-post-btn {
+        width: 100%;
+        font-size: 1em;
+    }
+    
+    .posts-table {
+        font-size: 0.9em;
+    }
+    
+    .posts-table th,
+    .posts-table td {
+        padding: 10px 8px;
+    }
+    
+    .content-cell {
+        max-width: 200px;
+    }
+    
+    .stats {
+        font-size: 0.9em;
+    }
+}
