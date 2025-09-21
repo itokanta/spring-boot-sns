@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規投稿 - Spring Boot SNS</title>
+    <!-- 共通CSSファイル読み込み -->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+</head>
+<body>
+    <div class="container form-container">
+        <div class="header success">
+            <h1>📝 新規投稿</h1>
+            <p>あなたの思いを投稿してみましょう</p>
+        </div>
+        
+        <!-- エラーメッセージ表示 -->
+        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+        
+        <!-- 投稿フォームの説明 -->
+        <div class="form-note">
+            <strong>📌 投稿ガイドライン:</strong><br>
+            ・ユーザー名は50文字以内で入力してください<br>
+            ・投稿内容は500文字以内で入力してください<br>
+            ・誹謗中傷や不適切な内容は控えましょう
+        </div>
+        
+        <!-- 新規投稿フォーム -->
+        <form method="post" action="/create">
+            <div class="form-group">
+                <label for="username">ユーザー名 <span class="required">*</span></label>
+                <input type="text" 
+                       id="username" 
+                       name="username" 
+                       class="form-control"
+                       th:value="${username}"
+                       placeholder="あなたの名前を入力してください" 
+                       maxlength="50" 
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">投稿内容 <span class="required">*</span></label>
+                <textarea id="content" 
+                          name="content" 
+                          class="form-control form-textarea"
+                          th:text="${content}"
+                          placeholder="今何してる？何を考えてる？自由に投稿してください..." 
+                          maxlength="500" 
+                          required></textarea>
+                <div class="char-count">
+                    <span id="charCount">0</span> / 500 文字
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn btn-success">🚀 投稿する</button>
+                <a href="/" class="btn btn-secondary">❌ キャンセル</a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- 文字数カウント用JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentTextarea = document.getElementById('content');
+            const charCountSpan = document.getElementById('charCount');
+            
+            function updateCharCount() {
+                const currentLength = contentTextarea.value.length;
+                charCountSpan.textContent = currentLength;
+                
+                // 文字数に応じて色を変更
+                if (currentLength > 450) {
+                    charCountSpan.style.color = '#dc3545';
+                } else if (currentLength > 400) {
+                    charCountSpan.style.color = '#ffc107';
+                } else {
+                    charCountSpan.style.color = '#666';
+                }
+            }
+            
+            contentTextarea.addEventListener('input', updateCharCount);
+            updateCharCount(); // 初期表示
+        });
+    </script>
+</body>
+</html>
