@@ -1,0 +1,254 @@
+/**
+ * Spring Boot SNS - 投稿一覧ページ専用スタイルシート
+ * index.html で使用
+ */
+
+/* ===== 統計情報 ===== */
+.stats {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    color: #495057;
+}
+
+.stats strong {
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+/* ===== 新規投稿ボタン ===== */
+.new-post-btn {
+    display: block;
+    width: 220px;
+    margin: 0 auto 30px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.new-post-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+.new-post-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== 投稿テーブル ===== */
+.posts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.posts-table th {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    font-weight: 600;
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.posts-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: top;
+}
+
+.posts-table tr:last-child td {
+    border-bottom: none;
+}
+
+.posts-table tr:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+/* ===== ユーザー名リンク ===== */
+.username-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.username-link:hover {
+    background-color: #e3f2fd;
+    color: #0056b3;
+    text-decoration: none;
+    transform: translateX(2px);
+}
+
+/* ===== 投稿内容セル ===== */
+.content-cell {
+    max-width: 350px;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ===== 日時セル ===== */
+.date-cell {
+    color: #6c757d;
+    font-size: 13px;
+    white-space: nowrap;
+    min-width: 130px;
+}
+
+/* ===== 投稿なしメッセージ ===== */
+.no-posts {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    border: 2px dashed #dee2e6;
+}
+
+.no-posts p {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+}
+
+.no-posts a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.no-posts a:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* ===== アニメーション ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.posts-table tr {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.posts-table tr:nth-child(1) { animation-delay: 0.1s; }
+.posts-table tr:nth-child(2) { animation-delay: 0.2s; }
+.posts-table tr:nth-child(3) { animation-delay: 0.3s; }
+.posts-table tr:nth-child(4) { animation-delay: 0.4s; }
+.posts-table tr:nth-child(5) { animation-delay: 0.5s; }
+
+/* ===== レスポンシブ対応 ===== */
+@media (max-width: 768px) {
+    .new-post-btn {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .posts-table {
+        font-size: 14px;
+    }
+    
+    .posts-table th,
+    .posts-table td {
+        padding: 10px 8px;
+    }
+    
+    .content-cell {
+        max-width: 200px;
+    }
+    
+    .stats {
+        margin-bottom: 20px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* テーブルを縦積みレイアウトに変更 */
+    .posts-table,
+    .posts-table thead,
+    .posts-table tbody,
+    .posts-table th,
+    .posts-table td,
+    .posts-table tr {
+        display: block;
+    }
+    
+    .posts-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .posts-table tr {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .posts-table td {
+        border: none;
+        padding: 8px 0;
+        position: relative;
+        padding-left: 35%;
+    }
+    
+    .posts-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 30%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #666;
+    }
+    
+    .content-cell {
+        max-width: none;
+    }
+    
+    .date-cell {
+        white-space: normal;
+    }
+}

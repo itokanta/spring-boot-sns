@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${username} + 'さんの投稿 - Spring Boot SNS'">ユーザー投稿 - Spring Boot SNS</title>
+    <!-- 外部CSSファイル読み込み -->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user.css}">
+</head>
+<body>
+    <div class="container">
+        <!-- 戻るリンク -->
+        <a href="/" class="back-link">← 投稿一覧に戻る</a>
+        
+        <div class="header">
+            <h1>👤 ユーザー投稿</h1>
+        </div>
+        
+        <!-- エラーメッセージ表示 -->
+        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+        
+        <!-- ユーザー情報表示 -->
+        <div class="user-info" th:if="${username}">
+            <div class="user-avatar" th:text="${username.substring(0, 1).toUpperCase()}">U</div>
+            <h2 th:text="${username} + 'さん'">ユーザー名さん</h2>
+            <div class="user-stats">
+                <div class="stat-item">
+                    <div class="stat-number" th:text="${postCount}">0</div>
+                    <div class="stat-label">投稿数</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 投稿一覧 -->
+        <div class="posts-container">
+            <div th:if="${postList != null and !postList.isEmpty()}">
+                <h3 th:text="${username} + 'さんの投稿一覧'">投稿一覧</h3>
+                
+                <!-- 各投稿をカード形式で表示 -->
+                <div th:each="post : ${postList}" class="post-card">
+                    <div class="post-content" th:text="${post.content}">投稿内容</div>
+                    <div class="post-date" th:text="${#temporals.format(post.createdAt, 'yyyy年MM月dd日 HH:mm')}">投稿日時</div>
+                </div>
+            </div>
+            
+            <!-- 投稿がない場合 -->
+            <div th:if="${postList == null or postList.isEmpty()}" class="no-posts">
+                <p th:text="${username} + 'さんはまだ投稿していません。'">このユーザーはまだ投稿していません。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
