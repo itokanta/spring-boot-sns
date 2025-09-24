@@ -10,8 +10,8 @@
 
 set -e  # エラー時に停止
 
-echo "🚀 Spring Boot SNS - クイックスタートスクリプト"
-echo "=================================================="
+echo "🚀 Spring Boot SNS - 開発用クイックスタート"
+echo "============================================="
 
 # 色付きメッセージ用の関数
 print_success() {
@@ -83,7 +83,7 @@ setup_database() {
 verify_database() {
     print_info "データベースの動作確認中..."
     
-    if psql -U sns_user -d sns_db -f verify_database.sql >/dev/null 2>&1; then
+    if psql -U dev_sns_user -d sns_db -f verify_database.sql >/dev/null 2>&1; then
         print_success "データベース動作確認完了"
     else
         print_warning "データベース確認で問題が発生しましたが、継続します"
